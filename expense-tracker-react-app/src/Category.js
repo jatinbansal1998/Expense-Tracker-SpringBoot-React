@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import AppNav from "./AppNav";
 
 class Category extends Component {
     state = {
@@ -10,8 +11,6 @@ class Category extends Component {
         const response = await fetch("/categories/")
         const responseBody = await response.json()
         const body = responseBody._embedded.categories
-        console.log("will I trigger? wait and find out")
-        console.log("Categories: " + body)
         this.setState({Categories: body, isLoading: false})
     }
 
@@ -21,14 +20,17 @@ class Category extends Component {
             return <div>Loading...</div>
         return (
             <div>
-                <h2>Categories</h2>
-                {
-                    Categories.map(c =>
-                        <div id={c.id}>
-                            <a href={c._links.expense.href}>{c.name}</a>
-                        </div>
-                    )
-                }
+                <AppNav/>
+                <div className={"App"}>
+                    <h1>Categories</h1>
+                    {
+                        Categories.map(c =>
+                            <div id={c.id}>
+                                <a href={c._links.expense.href}>{c.name}</a>
+                            </div>
+                        )
+                    }
+                </div>
             </div>
         );
     }
