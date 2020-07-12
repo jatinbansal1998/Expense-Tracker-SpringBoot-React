@@ -9,6 +9,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "USER")
+@SequenceGenerator(name = "default_gen", sequenceName = "USER_SEQ", allocationSize = 1)
 
 @Data
 @NoArgsConstructor
